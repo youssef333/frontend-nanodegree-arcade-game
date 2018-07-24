@@ -2,12 +2,13 @@
 ===============================
 ## Table of Contents
 
+
 * [How to play](#How-to-play)
 * [Challenge](#Challenge)
 
 ## How to play
 
-Download the repo and open index.html and use arrow keys to play.
+[Have Fun](https://youssef333.github.io/frontend-nanodegree-arcade-game/) use arrow keys to play.
 
 ## Challenge
 
