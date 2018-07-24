@@ -4,7 +4,7 @@
 
 // Enemy class
 class Enemy {
-    constructor(x , y, speed,sprite) {
+    constructor(x, y, speed, sprite) {
 
         this.x = x;
         this.y = y;
@@ -21,23 +21,23 @@ class Enemy {
     update(dt) {
         // You should multiply any movement by the dt parameter
 
-        this.x += (this.x + 100) * dt ;
-        if(this.x > ctx.canvas.width) this.x = 0;
-         this.checkCollisions();
+        this.x += (this.x + 100) * dt;
+        if (this.x > ctx.canvas.width) this.x = 0;
+        this.checkCollisions();
     }
 
-    render () {
+    render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     };
 
 
-        checkCollisions() {
-        if(player.x < this.x + 80 &&
-           player.x + 80 > this.x &&
-           player.y < this.y + 60 &&
-           60 + player.y > this.y) {
-                player.x = 200;
-                player.y = 400;
+    checkCollisions() {
+        if (player.x < this.x + 80 &&
+            player.x + 80 > this.x &&
+            player.y < this.y + 60 &&
+            60 + player.y > this.y) {
+            player.x = 200;
+            player.y = 400;
         }
     }
 }
@@ -46,7 +46,7 @@ class Enemy {
 // player class
 // This class requires an update(), render() and
 class Player {
-    constructor(x =0, y=0, speed , sprite) {
+    constructor(x = 0, y = 0, speed, sprite) {
 
         this.x = x;
         this.y = y;
@@ -54,19 +54,18 @@ class Player {
         this.level = 1;
     }
 
-    update() { 
-        if(this.winGame()) {
-        }
+    update() {
+        if (this.winGame()) {}
 
-        if(this.y > 400) {
+        if (this.y > 400) {
             this.y = 400;
         }
 
-        if(this.x < 0){
+        if (this.x < 0) {
             this.x = 0;
         }
 
-        if(this.x > 400){
+        if (this.x > 400) {
             this.x = 400;
         }
 
@@ -95,27 +94,13 @@ class Player {
     }
 
     //if player reach the water block reset the position to start
-    winGame(){
-        if(this.y < -50){
+    winGame() {
+        if (this.y < -50) {
             this.x = 200;
             this.y = 400;
             return true;
         }
     }
-/*// method to check collisions with enemies
-    checkCollisions() {
-        for (let i = 0; i < allEnemies.length; i++) {
-            let enemyChecked = allEnemies[1];
-            if (this.x < enemyChecked.x + enemyChecked.width 
-                && this.x + this.width > enemyChecked.x 
-                && this.y < enemyChecked.y + enemyChecked.height 
-                && this.y + this.height > enemyChecked.y) 
-            {
-                this.x = 205;
-                this.y = 395;
-            }
-        }
-    }*/
 }
 
 // function generating positive integer n
