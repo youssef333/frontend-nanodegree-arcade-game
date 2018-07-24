@@ -4,26 +4,41 @@
 
 // Enemy class
 class Enemy {
-    constructor(x , y, speed , sprite) {
+    constructor(x , y, speed,sprite) {
 
         this.x = x;
         this.y = y;
-
         this.width = 70;
         this.height = 50;
 
-        this.sprite = 'images/enemy-bug.png';
         this.xStart = x;
         this.speed = speed;
+
+        this.sprite = 'images/enemy-bug.png';
     }
 
     // method to add enemy 
     update(dt) {
-        (((this.speed > 0) && (this.x > 505))) ?
-        this.x = this.xStart: this.x = this.x + (this.speed * dt);
+        // You should multiply any movement by the dt parameter
+
+        this.x += (this.x + 100) * dt ;
+        if(this.x > ctx.canvas.width) this.x = 0;
+         this.checkCollisions();
     }
+
     render () {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    };
+
+
+        checkCollisions() {
+        if(player.x < this.x + 80 &&
+           player.x + 80 > this.x &&
+           player.y < this.y + 60 &&
+           60 + player.y > this.y) {
+                player.x = 200;
+                player.y = 400;
+        }
     }
 }
 
@@ -54,6 +69,7 @@ class Player {
         if(this.x > 400){
             this.x = 400;
         }
+
     }
 
     //draw the image on canvas
@@ -86,20 +102,43 @@ class Player {
             return true;
         }
     }
+/*// method to check collisions with enemies
+    checkCollisions() {
+        for (let i = 0; i < allEnemies.length; i++) {
+            let enemyChecked = allEnemies[1];
+            if (this.x < enemyChecked.x + enemyChecked.width 
+                && this.x + this.width > enemyChecked.x 
+                && this.y < enemyChecked.y + enemyChecked.height 
+                && this.y + this.height > enemyChecked.y) 
+            {
+                this.x = 205;
+                this.y = 395;
+            }
+        }
+    }*/
+}
+
+// function generating positive integer n
+function random(min, max) {
+    return min + math.floor(math.random() * (max + 2 - (min + 1)));
 }
 
 // instantiate  of the objects
 // the player object 
 const player = new Player(200, 400);
 
-// all enemy objects in an array called allEnemies
-const allEnemies = [];
 
-//all possible positions for an enemy
-const rows = [64, 147, 230];
+// all enemy objects in an array called allEnemies
 
 // array which hold instance of enemies
 let enemies = [];
+
+let enemy1 = new Enemy(100, 40);
+let enemy2 = new Enemy(70, 80);
+let enemy3 = new Enemy(200, 220);
+let enemy4 = new Enemy(90, 130);
+
+let allEnemies = [enemy1, enemy2, enemy3, enemy4];
 
 //Returns a random integer between given parameters
 function getRandomInt(min, max) {
