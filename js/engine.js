@@ -96,6 +96,23 @@ var Engine = (function(global) {
         player.update();
     }
 
+
+    function checkCollisions () {
+        allEnemies.forEach(function(enemy) {
+            var  horizonDiff = Math.abs(Math.floor(enemy.x) - player.startPosX);
+            if(horizonDiff <= 25 )
+            {
+                var verticDiff = Math.abs(Math.floor(enemy.y) - player.startPosY);
+                console.log(verticDiff);
+                if(verticDiff <= 20)
+                {
+                     player.reset();
+                     enemy.x += 50;
+                }   
+            }
+        });
+    }
+
     /* This function initially draws the "game level", it will then call
      * the renderEntities function. Remember, this function is called every
      * game tick (or loop of the game engine) because that's how games work -

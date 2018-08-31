@@ -8,7 +8,7 @@ class Enemy {
 
         this.x = x;
         this.y = y;
-        this.speed = x ;
+        this.speed = x;
         this.sprite = 'images/enemy-bug.png';
     }
 
@@ -50,18 +50,6 @@ class Player {
 
     update() {
         if (this.winGame()) {}
-
-        if (this.y > 400) {
-            this.y = 400;
-        }
-
-        if (this.x < 0) {
-            this.x = 0;
-        }
-
-        if (this.x > 400) {
-            this.x = 400;
-        }
     }
 
     //draw the image on canvas
@@ -111,14 +99,6 @@ let enemy3 = new Enemy(200, 220);
 let enemy4 = new Enemy(90, 130);
 
 let allEnemies = [enemy1, enemy2, enemy3, enemy4];
-
-
-var getRandomPosition = function() {
-    var number = Math.floor((Math.random() * 3) + 1);
-    return number;
-};
-
-this.speed= ((getRandomPosition())*70);
 
 
 // This listens for key presses
